@@ -4,6 +4,7 @@ The world is still under the threat of different strains of the coronavirus and 
 
 ## Citation
 If you find our proposed methodology useful, please consider citing it
+
 `@inproceedings{lecuyer2014xray,
   title={Xray: Enhancing the web’s transparency with differential correlation},
   author={L{\'e}cuyer, Mathias and Ducoffe, Guillaume and Lan, Francis and Papancea, Andrei and Petsios, Theofilos and Spahn, Riley and Chaintreau, Augustin and Geambasu, Roxana},
