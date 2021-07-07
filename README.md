@@ -7,6 +7,12 @@ If you find our proposed methodology useful, please consider citing it
 ```
 
 ```
+
+## Data Availablity
+The Novel COVID-19 Chestxray Repository is currently private, however you may find the data in the following Google Drive link for the time being:
+```
+https://drive.google.com/drive/folders/16UkFla-JX_OoYsytgKVwdOZfHSy_Qc9U?usp=sharing
+```
 ## Contact
 In case of doubt or further collaboration, feel free to email us ! 😊
 - [Subhankar Sen (subhankarsen2001@gmail.com) ](mailto:subhankarsen2001@gmail.com)
