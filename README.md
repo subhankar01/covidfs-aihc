@@ -11,12 +11,10 @@ If you find our proposed methodology useful, please consider citing it
 ```
 
 ## Data Availablity
-The Novel COVID-19 Chestxray Repository is currently private since the paper which proposed it hasn't been published yet, however you may find the data in the following Google Drive link for the time being:
 ```
-https://drive.google.com/drive/folders/16UkFla-JX_OoYsytgKVwdOZfHSy_Qc9U?usp=sharing
+https://www.kaggle.com/subhankarsen/novel-covid19-chestxray-repository
 ```
 ## Contact
 In case of doubt or further collaboration, feel free to email us ! 😊
 - [Subhankar Sen (subhankarsen2001@gmail.com) ](mailto:subhankarsen2001@gmail.com)
 - [Pratik Bhowal (pratikbhowal1999@gmail.com)](mailto:pratikbhowal1999@gmail.com)
-- [Prof. Ram Sarkar (ramjucse@gmail.com)](mailto:ramjucse@gmail.com)
