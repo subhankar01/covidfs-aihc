@@ -3,22 +3,14 @@ from os.path import basename, join, exists
 import numpy as np
 import math
 np.random.seed(777)
-import time
 import tensorflow_addons as tfa
 from tensorflow.keras import models
 from tensorflow.keras import layers
 from tensorflow.keras import models
 from tensorflow.keras import optimizers
 from tensorflow.keras import callbacks
-from tensorflow.keras import callbacks
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from numpy import array
-from numpy import argmax
-from  numpy import mean 
-from numpy import std
-from sklearn.metrics import accuracy_score
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
@@ -131,24 +123,33 @@ custom_incep_model.summary()
 
 nEpochs=100
 base_lr=1e-3
+lr_min=0
+alpha=1
+def lr_scheduler(epoch):
+    lr = math.fabs(lr_min + (1 + math.cos(1 * epoch * math.pi /nEpochs)) * (base_lr - lr_min) / 2.)
+    print('lr: %f' % lr)
+    return lr
+
+contr_loss=tfa.losses.contrastive_loss
+
 opt = optimizers.Adam(lr=base_lr, beta_1=0.6, beta_2=0.8,amsgrad=True)
-custom_incep_model.compile(optimizer = opt, loss='categorical_crossentropy', metrics=['accuracy'])
+custom_incep_model.compile(optimizer = opt, loss=['categorical_crossentropy',contr_loss], metrics=['accuracy'])
 checkpoint1 = callbacks.ModelCheckpoint('saved models/InceptionV3/inception_weights.h5', monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
-callbacks_list=[checkpoint1]
-#training the modified InceptionV3 network for refining the deep feature embedding
+lr_decay = callbacks.LearningRateScheduler(schedule=lr_scheduler)
+callbacks_list=[checkpoint1,lr_decay]
 history =custom_incep_model.fit(train_generator_incep,
                     epochs=nEpochs,
                     validation_data=val_generator_incep,
                     callbacks=callbacks_list)
-
+bottleneck= tf.keras.Model(inputs=custom_incep_model.input, outputs=custom_incep_model.layers[294].output)
 #Saving features of the training images
-features_train = custom_incep_model.predict_generator(train_generator_incep, predict_size_train)
+features_train = bottleneck.predict_generator(train_generator_incep, predict_size_train)
 np.save(extracted_features_dir+model_name+'_train_features.npy', features_train)
 
 # Saving features of the validation images
-features_validation = custom_incep_model.predict_generator(val_generator_incep, predict_size_validation)
+features_validation = bottleneck.predict_generator(val_generator_incep, predict_size_validation)
 np.save(extracted_features_dir+model_name+'_val_features.npy', features_validation)
 
 # Saving features of the test images
-features_test = custom_incep_model.predict_generator(test_generator_incep, predict_size_test)
+features_test = vbottleneck.predict_generator(test_generator_incep, predict_size_test)
 np.save(extracted_features_dir+model_name+'_test_features.npy', features_test)
