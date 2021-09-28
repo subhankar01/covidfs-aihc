@@ -9,7 +9,14 @@ The world is still under the threat of different strains of the coronavirus and 
 ## Journal Paper
 If you find our proposed methodology useful, please consider citing it
 ```
-
+@article{bhowal2021two,
+  title={A two-tier feature selection method using Coalition game and Nystrom sampling for screening COVID-19 from chest X-Ray images},
+  author={Bhowal, Pratik and Sen, Subhankar and Sarkar, Ram},
+  journal={Journal of Ambient Intelligence and Humanized Computing},
+  pages={1--16},
+  year={2021},
+  publisher={Springer}
+}
 ```
 ## Installation
 1. Make sure you have python3 setup on your system
